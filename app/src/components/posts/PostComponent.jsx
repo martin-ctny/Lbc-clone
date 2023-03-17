@@ -1,16 +1,23 @@
 import { Box, Button, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PostsService from "../../src/services/post.service";
 import ModalPhoto from "../modalphoto/ModalPhoto";
 
 const PostComponent = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const [post, setPost] = useState({});
 
   useEffect(() => {
     getPost();
   }, []);
+
+  const handleNavigate = (e) => {
+    e.preventDefault();
+    navigate(`/posts/${id}/edit`);
+  };
 
   const getPost = async () => {
     try {
@@ -76,7 +83,7 @@ const PostComponent = () => {
       <p>{post.content}</p>
       <ModalPhoto files={post.uploadFiles} />
 
-      <Button>Edit</Button>
+      <Button onClick={handleNavigate}>Edit</Button>
     </Box>
   );
 };

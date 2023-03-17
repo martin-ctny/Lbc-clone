@@ -1,9 +1,12 @@
 import { TextField } from "@mui/material";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
+import { PostContext } from "../../src/context/PostContex";
 
-function Autocomplete({ id, newPost, setNewPost }) {
+function Autocomplete({ id }) {
   const inputLocation = useRef(null);
   const [TemporaryAdresse, setTemporaryAdresse] = useState({});
+
+  const { setNewPost, address } = useContext(PostContext);
 
   function AddAutoComplete() {
     const options = {
@@ -39,6 +42,8 @@ function Autocomplete({ id, newPost, setNewPost }) {
                 autocompleteValue?.address_components[4]?.long_name,
               country: autocompleteValue?.address_components[5]?.long_name,
               postal_code: autocompleteValue?.address_components[6]?.long_name,
+              lat: autocompleteValue?.geometry?.location?.lat(),
+              lng: autocompleteValue?.geometry?.location?.lng(),
             };
 
             setNewPost((newPost) => {
@@ -60,14 +65,17 @@ function Autocomplete({ id, newPost, setNewPost }) {
   }, [inputLocation.current]);
 
   return (
-    <TextField
-      label="Entrez votre adresse"
-      variant="outlined"
-      type="text"
-      name="title"
-      id={id}
-      inputRef={inputLocation}
-    />
+    <>
+      <TextField
+        label="Entrez votre adresse"
+        variant="outlined"
+        type="text"
+        name="title"
+        defaultValue={address || ""}
+        id={id}
+        inputRef={inputLocation}
+      />
+    </>
   );
 }
 

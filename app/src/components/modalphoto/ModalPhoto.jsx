@@ -48,7 +48,7 @@ const ModalPhoto = ({ files }) => {
   }, []);
   return (
     <>
-      {files && files.length > 3 && (
+      {files && files.length > 1 && (
         <>
           <Button variant="contained" onClick={handleOpen}>
             Voir les {files.length - 3} autres images

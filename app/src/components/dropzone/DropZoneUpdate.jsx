@@ -12,7 +12,7 @@ function MyDropzone() {
   const [imageURLs, setImageURLs] = useState(Array(7).fill(""));
   const [files, setFiles] = useState([]);
 
-  const { setNewPost } = useContext(PostContext);
+  const { setNewPost, newPost } = useContext(PostContext);
 
   const { acceptedFiles, getRootProps, getInputProps, isDragActive } =
     useDropzone({

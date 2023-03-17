@@ -24,6 +24,13 @@ const postLocationSchema = new mongoose.Schema({
   postal_code: {
     type: String,
   },
+  lat: {
+    type: String,
+  },
+  lng: {
+    type: String,
+  },
+
   post: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Post",

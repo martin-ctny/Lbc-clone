@@ -1,7 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import PostComponent from "../components/posts/PostComponent";
 import { useNavigate } from "react-router-dom";
-import ModalPhoto from "../components/modalphoto/ModalPhoto";
 
 const PostPageOne = () => {
   const navigate = useNavigate();

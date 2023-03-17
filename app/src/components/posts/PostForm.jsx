@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { Box, Button } from "@mui/material";
 import MyDropzone from "../dropzone/DropZone";
 import PostsService from "../../src/services/post.service";
-import Autocomplete from "../autocomplete/Autocomplete";
+import Autocomplete from "../localisation/Autocomplete";
 import MyStepper from "../mystepper/MyStepper";
+import { PostContext } from "../../src/context/PostContex";
 
 const PostForm = () => {
-  const [newPost, setNewPost] = useState({});
+  const { newPost, setNewPost, address, setAdress } = useContext(PostContext);
+
   const [success, setSuccess] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
 
@@ -68,7 +70,7 @@ const PostForm = () => {
               name="content"
               id="content"
             />
-            <Autocomplete newPost={newPost} setNewPost={setNewPost} />
+            <Autocomplete />
 
             <Button variant="contained" onClick={(e) => handleNext(e)}>
               Next

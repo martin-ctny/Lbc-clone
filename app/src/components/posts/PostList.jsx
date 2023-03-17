@@ -1,12 +1,14 @@
 import { Box, Button } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { PostContext } from "../../src/context/PostContex";
 import PostsService from "../../src/services/post.service";
 
 const PostList = () => {
-  const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
+
+  const { posts, setPosts } = useContext(PostContext);
 
   useEffect(() => {
     getAllPosts();
